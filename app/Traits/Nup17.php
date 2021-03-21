@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
 /**
- * Nup17 - Número único de processo 17
+ * Nup17 - Número Único de Protocolo (tamanho 17)
+ * 
+ * @link https://www.gov.br/economia/pt-br/assuntos/processo-eletronico-nacional/conteudo/numero-unico-de-protocolo
  */
 trait Nup17
 {
