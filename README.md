@@ -1,9 +1,11 @@
-# PENa
-## Processo Eletrônico Nacional de código aberto
 
 <p align="center">
-<img src="https://img.shields.io/github/l/jorgevilaca82/PENa" alt="License">
+<a href="https://github.com/jorgevilaca82/PENa"><img alt="GitHub license" src="https://img.shields.io/github/license/jorgevilaca82/PENa?style=flat-square"></a>
 </p>
+
+# PENa
+
+Processo Eletrônico Nacional de código aberto
 
 Depêndencias
 --
