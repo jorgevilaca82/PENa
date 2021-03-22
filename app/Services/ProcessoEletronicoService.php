@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Events\ProcessoEletronico\NovoProcessoEletronicoIniciado;
 use App\Models\ProcessoEletronico;
-use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 
 class ProcessoEletronicoService
@@ -21,14 +21,17 @@ class ProcessoEletronicoService
      * Inicia um novo processo eletrônico para o usuário solicitante
      * e dispara um evento para notificar sobre sua criação
      * 
-     * @param Arrayable $request
+     * @param FormRequest $request
      * @return App\Models\ProcessoEletronico
      */
-    public function inicializaNovoProcessoEletronico(Arrayable $request)
+    public function inicializaNovoProcessoEletronico(FormRequest $request)
     {
-        $processoEletronico = ProcessoEletronico::factory()->create([
-            'user' => $request->user
-        ]);
+        $data = $request->input();
+
+        // TODO: obter de $request->user
+        $data['org_id'] = '23243';
+
+        $processoEletronico = ProcessoEletronico::create($data);
 
         $this->storage->makeDirectory($processoEletronico->id);
 

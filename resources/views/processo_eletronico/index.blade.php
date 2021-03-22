@@ -9,30 +9,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    
-                    <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                        @forelse ($objects as $obj)
-                        <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                            <div class="w-0 flex-1 flex items-center">
-                                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                                </svg>
-                                <span class="ml-2 flex-1 w-0 truncate">
-                                    {{ $obj->nup17 }}
-                                </span>
-                            </div>
-                            <div class="ml-4 flex-shrink-0">
-                                <a href="{{ route('processo_eletronico.show', $obj) }}" 
-                                class="font-medium text-indigo-600 hover:text-indigo-500">
-                                Ver
-                                </a>
-                            </div>
-                        </li>
-                        @empty
-                        <p>Nenhum processo</p>
-                        @endforelse    
-                    </ul>
-                    
+
+
+                    <a href="{{ route('processo_eletronico.create') }}" class="">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            class="text-yellow-400 mr-3 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                        </svg>
+                        {{ __('Novo Processo Eletrônico') }}
+                    </a>
+
+                    @include('processo_eletronico._list')
                 </div>
             </div>
         </div>

@@ -33,7 +33,8 @@ class ProcessoEletronicoController extends Controller
      */
     public function create()
     {
-        //
+        $processoEletronico = ProcessoEletronico::factory()->make();
+        return view('processo_eletronico.create', compact('processoEletronico'));
     }
 
     /**
@@ -81,17 +82,6 @@ class ProcessoEletronicoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ProcessoEletronico $processoEletronico)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ProcessoEletronico  $processoEletronico
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ProcessoEletronico $processoEletronico)
     {
         //
     }

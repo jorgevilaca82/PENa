@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProcessoEletronicoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->middleware('guest');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('processo_eletronico', ProcessoEletronicoController::class);
+    Route::resource('processo_eletronico', ProcessoEletronicoController::class)
+        ->except(['destroy']);
 });
 
 require __DIR__ . '/auth.php';

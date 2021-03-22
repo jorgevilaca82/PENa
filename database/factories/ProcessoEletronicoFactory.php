@@ -22,7 +22,7 @@ class ProcessoEletronicoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'public' => true,
         ];
     }
 }
