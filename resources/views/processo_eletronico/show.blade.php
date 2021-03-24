@@ -56,7 +56,7 @@
                                         {{ __('Hipótese legal') }}
                                     </dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                        {{ $processoEletronico->hipotese_legal_id }}
+                                        {{ $processoEletronico->hipoteseLegal }}
                                     </dd>
                                 </div>
                             </dl>

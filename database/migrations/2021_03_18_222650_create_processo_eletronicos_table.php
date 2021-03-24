@@ -19,7 +19,7 @@ class CreateProcessoEletronicosTable extends Migration
             $table->integer('protocolo_seq');
             $table->string('nup17', 20)->unique();
             $table->boolean('public')->default(false);
-            $table->smallInteger('hipotese_legal_id')->nullable();
+            $table->foreignId('hipotese_legal_id')->nullable()->constrained('hipotese_legal');
             $table->timestamps();
         });
     }

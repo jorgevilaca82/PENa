@@ -3869,19 +3869,27 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   \**********************************/
 /***/ (() => {
 
-var orgId = 23243; // TODO: recupar de uma tag meta no head?
-
 window.Spruce.store('processos', {
   all: [],
   add: function add(processo) {
     this.all.unshift(processo);
   }
 });
-Echo["private"]("processoEletronico.".concat(orgId)).listen('.processoEletronico.iniciado', function (e) {
-  var processos = Spruce.store('processos');
-  processos.add(e.processoEletronico);
-  var msg = "O processo ".concat(e.processoEletronico.nup17, " \n            foi criado na sua unidade");
-  new Notification(msg);
+document.addEventListener('DOMContentLoaded', function () {
+  if (Notification.permission !== 'granted') {
+    Notification.requestPermission().then(function (permission) {
+      new Notification('Obrigado! 😉');
+    });
+  }
+
+  var uoCodProtocolo = document.querySelector('meta[name="cod-protocolo"]').content; // Conecta ao canal e ouve os eventos
+
+  Echo["private"]("processoEletronico.".concat(uoCodProtocolo)).listen('.processoEletronico.iniciado', function (e) {
+    var processos = Spruce.store('processos');
+    processos.add(e.processoEletronico);
+    var pe = e.processoEletronico;
+    new Notification("O processo ".concat(pe.nup17, " \n foi criado na sua unidade"));
+  });
 });
 
 /***/ }),

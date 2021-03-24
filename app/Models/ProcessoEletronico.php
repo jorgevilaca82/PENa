@@ -33,4 +33,9 @@ class ProcessoEletronico extends Model
     protected $casts = [
         'public' => 'boolean',
     ];
+
+    public function hipoteseLegal()
+    {
+        return $this->belongsTo(HipoteseLegal::class, 'hipotese_legal_id');
+    }
 }

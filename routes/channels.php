@@ -19,14 +19,11 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('processoEletronico.{orgId}', function ($user) {
-    return true; // TODO: return $user->org_id === $orgId;
-});
-
+// Broadcast apenas para os usuários pertencentes 
+// a mesma unidade protocolizadora
 Broadcast::channel(
-    'processoEletronico.{processoEletronico}',
-    function (User $user, ProcessoEletronico $processoEletronico) {
-        // TODO: Broadcast apenas para os usuários pertencentes ao mesmo $org_id
-        return true;
+    'processoEletronico.{uoCodProtocolo}',
+    function ($user, $uoCodProtocolo) {
+        return $user->unidadeOrganizacional->cod_protocolo === $uoCodProtocolo;
     }
 );

@@ -13,8 +13,8 @@
     <!-- Hipótese legal -->
     <div x-show.transition="! public">
         <x-label for="hipotese_legal_id" :value="__('Hipótese legal')" />
-        <x-input id="hipotese_legal_id" class="block mt-1 w-full" type="text" name="hipotese_legal_id"
-            :value="old('hipotese_legal_id')" x-bind:required="! public" />
+        <x-select-input name="hipotese_legal_id" :selectedID="old('hipotese_legal_id')" :items="$hipotesesLegais"
+            x-bind:required="! public" class="block mt-1 w-full" />
     </div>
 
     <div class="flex items-center justify-end mt-4">

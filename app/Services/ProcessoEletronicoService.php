@@ -25,12 +25,9 @@ class ProcessoEletronicoService
      */
     public function inicializaNovoProcessoEletronico($request)
     {
-
         $data = $request->input();
 
-
-        // TODO: obter de $request->user
-        $data['org_id'] = '23243';
+        $data['org_id'] = $request->user()->unidadeOrganizacional->cod_protocolo;
 
         $processoEletronico = ProcessoEletronico::create($data);
 

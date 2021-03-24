@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProcessoEletronico\StoreRequest;
+use App\Models\HipoteseLegal;
 use App\Models\ProcessoEletronico;
 use App\Services\ProcessoEletronicoService;
 use Illuminate\Http\Request;
@@ -34,7 +35,11 @@ class ProcessoEletronicoController extends Controller
     public function create()
     {
         $processoEletronico = ProcessoEletronico::factory()->make();
-        return view('processo_eletronico.create', compact('processoEletronico'));
+        $hipotesesLegais = HipoteseLegal::pluck('descricao', 'id');
+
+        $viewData = compact('processoEletronico', 'hipotesesLegais');
+
+        return view('processo_eletronico.create', $viewData);
     }
 
     /**
