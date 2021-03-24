@@ -16,7 +16,6 @@ class ProcessoEletronicoService
         $this->storage = Storage::disk($defaultStorageDisk);
     }
 
-
     /**
      * Inicia um novo processo eletrônico para o usuário solicitante
      * e dispara um evento para notificar sobre sua criação
@@ -24,9 +23,11 @@ class ProcessoEletronicoService
      * @param FormRequest $request
      * @return App\Models\ProcessoEletronico
      */
-    public function inicializaNovoProcessoEletronico(FormRequest $request)
+    public function inicializaNovoProcessoEletronico($request)
     {
+
         $data = $request->input();
+
 
         // TODO: obter de $request->user
         $data['org_id'] = '23243';
@@ -36,7 +37,8 @@ class ProcessoEletronicoService
         $this->storage->makeDirectory($processoEletronico->id);
 
         // Dispara o evento
-        NovoProcessoEletronicoIniciado::dispatch($processoEletronico);
+        $event = new NovoProcessoEletronicoIniciado($processoEletronico);
+        broadcast($event)->toOthers();
 
         return $processoEletronico;
     }

@@ -23,5 +23,14 @@ class ProcessoEletronico extends Model
      *
      * @var array
      */
-    protected $fillable = ['org_id', 'public', 'hipotese_legal'];
+    protected $fillable = ['org_id', 'public', 'hipotese_legal_id'];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'public' => 'boolean',
+    ];
 }

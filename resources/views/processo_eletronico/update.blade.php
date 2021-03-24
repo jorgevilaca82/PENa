@@ -9,12 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h3>{{ __('Novo Processo Eletrônico') }}</h3>
+                    <h3>{{ __('Atualizar Processo Eletrônico') }}</h3>
                     <!-- Validation Errors -->
                     <x-form-validation-errors class="mb-4" :errors="$errors" />
 
-                    <form action="{{ route('processo_eletronico.store') }}" method="post">
+                    <form
+                        action="{{ route('processo_eletronico.update', ['processo_eletronico' => $processoEletronico]) }}"
+                        method="post">
                         @csrf
+                        @method('PUT')
                         @include('processo_eletronico._form_fields')
                     </form>
                 </div>

@@ -9,8 +9,11 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-
-
+                    <div class="pb-5">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900">
+                            {{ __('Processos mais recentes') }}
+                        </h3>
+                    </div>
                     <a href="{{ route('processo_eletronico.create') }}" class="">
                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             class="text-yellow-400 mr-3 w-6">

@@ -45,6 +45,7 @@ class ProcessoEletronicoController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        // dd($request);
         $processoEletronico = $this->service
             ->inicializaNovoProcessoEletronico($request);
 
@@ -60,7 +61,7 @@ class ProcessoEletronicoController extends Controller
      */
     public function show(ProcessoEletronico $processoEletronico)
     {
-        //
+        return view('processo_eletronico.show', compact('processoEletronico'));
     }
 
     /**

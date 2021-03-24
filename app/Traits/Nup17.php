@@ -56,9 +56,12 @@ trait Nup17
             ->where($this->getOrgIdColumn(), $this->{$this->getOrgIdColumn()})
             ->latest()
             ->orderByDesc($this->getProtocoloSeqColumn())
-            ->get()[0];
+            ->limit(1)
+            ->get();
 
-        if ($latest) {
+        if ($latest->count()) {
+            $latest = $latest[0];
+
             $this->{$this->getProtocoloSeqColumn()} =
                 (int) $latest->{$this->getProtocoloSeqColumn()} + 1;
         }
