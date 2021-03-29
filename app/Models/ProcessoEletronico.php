@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ProcessoEletronico\Documento;
 use App\Traits\Nup17;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -37,5 +38,10 @@ class ProcessoEletronico extends Model
     public function hipoteseLegal()
     {
         return $this->belongsTo(HipoteseLegal::class, 'hipotese_legal_id');
+    }
+
+    public function documentos()
+    {
+        return $this->hasMany(Documento::class, 'pe_id');
     }
 }

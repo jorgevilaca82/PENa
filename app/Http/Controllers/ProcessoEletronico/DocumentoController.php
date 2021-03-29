@@ -3,19 +3,30 @@
 namespace App\Http\Controllers\ProcessoEletronico;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProcessoEletronico;
 use App\Models\ProcessoEletronico\Documento;
+use App\Services\ProcessoEletronicoService;
 use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
 {
+    public function __construct(ProcessoEletronicoService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
-     * Display a listing of the resource.
+     * Exibe informações básicas do processo e a lista
+     * de documentos que o compõem.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProcessoEletronico $processoEletronico)
     {
-        //
+        return view(
+            "processo_eletronico.documento.index",
+            compact("processoEletronico")
+        );
     }
 
     /**
@@ -23,9 +34,12 @@ class DocumentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(ProcessoEletronico $processoEletronico)
     {
-        //
+        return view(
+            "processo_eletronico.documento.create",
+            compact("processoEletronico")
+        );
     }
 
     /**
@@ -34,9 +48,18 @@ class DocumentoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(
+        Request $request,
+        ProcessoEletronico $processoEletronico
+    ) {
+        $documento = $this->service
+            ->adicionaNovoDocumentoAoProcesso($processoEletronico, $request);
+
+        return redirect()
+            ->route(
+                "processo_eletronico.documentos.edit",
+                [$processoEletronico, $documento]
+            );
     }
 
     /**
@@ -45,9 +68,11 @@ class DocumentoController extends Controller
      * @param  \App\Models\ProcessoEletronico\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function show(Documento $documento)
-    {
-        //
+    public function show(
+        ProcessoEletronico $processoEletronico,
+        Documento $documento
+    ) {
+        dd($documento);
     }
 
     /**
@@ -56,9 +81,14 @@ class DocumentoController extends Controller
      * @param  \App\Models\ProcessoEletronico\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Documento $documento)
-    {
-        //
+    public function edit(
+        ProcessoEletronico $processoEletronico,
+        Documento $documento
+    ) {
+        return view(
+            "processo_eletronico.documento.edit",
+            compact('processoEletronico', "documento")
+        );
     }
 
     /**
@@ -68,8 +98,11 @@ class DocumentoController extends Controller
      * @param  \App\Models\ProcessoEletronico\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Documento $documento)
-    {
+    public function update(
+        Request $request,
+        ProcessoEletronico $_,
+        Documento $documento
+    ) {
         //
     }
 
@@ -79,7 +112,7 @@ class DocumentoController extends Controller
      * @param  \App\Models\ProcessoEletronico\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Documento $documento)
+    public function destroy(ProcessoEletronico $_, Documento $documento)
     {
         //
     }

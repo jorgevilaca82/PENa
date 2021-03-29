@@ -18,5 +18,3 @@ Em distribuições baseadas em Debian, execute:
 `$ sudo apt install php-curl php-gmp`
 
 `$ php artisan websockets:serve`
-
-`$ docker run -i -t -d -p 8085:80 onlyoffice/documentserver`

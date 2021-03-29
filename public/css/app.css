@@ -31432,6 +31432,9 @@ select {
           animation: bounce 1s infinite;
 }
 
+.my {
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -184466,4 +184469,3 @@ select {
             animation: bounce 1s infinite;
   }
 }
-

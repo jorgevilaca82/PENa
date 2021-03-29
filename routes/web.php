@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProcessoEletronicoController;
+use App\Http\Controllers\ProcessoEletronico\DocumentoController as PEDocumentoController;
+use App\Http\Controllers\ProcessoEletronicoController as PEController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,8 +25,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('processo_eletronico', ProcessoEletronicoController::class)
+    Route::resource('processo_eletronico', PEController::class)
         ->except(['destroy']);
+
+    Route::resource('processo_eletronico.documentos', PEDocumentoController::class)
+        ->except(['destroy'])->scoped(['documento' => 'protocolo']);
 });
 
 require __DIR__ . '/auth.php';

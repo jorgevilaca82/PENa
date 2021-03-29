@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Events\ProcessoEletronico\NovoProcessoEletronicoIniciado;
 use App\Models\ProcessoEletronico;
+use App\Models\ProcessoEletronico\Documento;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,7 @@ class ProcessoEletronicoService
 
     public function __construct($defaultStorageDisk = 'public')
     {
+        $this->defaultStorageDisk = $defaultStorageDisk;
         $this->storage = Storage::disk($defaultStorageDisk);
     }
 
@@ -38,5 +40,15 @@ class ProcessoEletronicoService
         broadcast($event)->toOthers();
 
         return $processoEletronico;
+    }
+
+    public function adicionaNovoDocumentoAoProcesso(
+        ProcessoEletronico $processoEletronico,
+        $request
+    ) {
+        $documento = new Documento($request->input());
+        $processoEletronico->documentos()->save($documento);
+        $documento->putContents("", $this->defaultStorageDisk, ".html");
+        return $documento;
     }
 }
